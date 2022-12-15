@@ -1,23 +1,26 @@
 {
-  "name": "lastfm-bot",
-  "version": "1.0.0",
-  "description": "Bot that utilizes the Last Fm APO",
-  "main": "src/bot.js",
-  "scripts": {
-    "test": "node .",
-    "dev": "npx nodemon src/bot.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@discordjs/rest": "^1.4.0",
-    "canvas": "^2.10.2",
-    "chalk": "^4.1.2",
-    "discord-api-types": "^0.37.21",
-    "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+    "name": "lastfm-bot",
+    "version": "1.0.0",
+    "description": "Bot that utilizes the Last Fm APO",
+    "main": "src/bot.js",
+    "scripts": {
+        "test": "node .",
+        "dev": "npx nodemon src/bot.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@discordjs/rest": "^1.4.0",
+        "canvas": "^2.10.2",
+        "chalk": "^4.1.2",
+        "discord-api-types": "^0.37.21",
+        "discord.js": "^14.7.1",
+        "dotenv": "^16.0.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    },
+    "prettier": {
+        "tabWidth": 2
+    }
 }
