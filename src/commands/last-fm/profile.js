@@ -74,8 +74,8 @@ module.exports = {
       });
 
     const button = new ButtonBuilder()
-      .setCustomId("last-fm")
-      .setLabel("change")
+      .setCustomId("recent")
+      .setLabel("Recent Tracks")
       .setStyle(ButtonStyle.Secondary);
 
     const actions = new ActionRowBuilder()

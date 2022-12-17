@@ -15,7 +15,6 @@ module.exports = (client) => {
           for (const file of componentFiles) {
             const button = require(`../../components/${folder}/${file}`);
             buttons.set(button.data.name, button);
-            console.log(buttons)
           }
           break;
           

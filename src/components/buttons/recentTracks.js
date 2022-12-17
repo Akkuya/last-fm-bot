@@ -2,7 +2,7 @@ const { EmbedBuilder } = require(`discord.js`)
 
 module.exports = {
   data: {
-    name: `last-fm`,
+    name: `recent`,
   },
   async execute(interaction, client, options) {
 
@@ -15,8 +15,9 @@ module.exports = {
     );
     let x = await user.json();
     let name = x.user.name
-    // let x = options.getString('user')
-    // console.log(x)
+    
+
+
     let object = await tracks.json();
     let top15 = "";
     let top15track = object["recenttracks"]["track"];
@@ -24,18 +25,18 @@ module.exports = {
     for (let i = 0; i < 15; i++) {
       top15 =
         top15 +
-        `${top15track[i]["name"]} - ${top15artist[i]["artist"]["#text"]}\n`;
+        `${top15track[i]["name"]} - **${top15artist[i]["artist"]["#text"]}**\n`;
     }
 
-    console.log(top15);
-
+    let firstTrackCover = object.recenttracks.track[0].image[2]["#text"]
+    console.log(firstTrackCover)
     const embed = new EmbedBuilder()
-      .setTitle(`${name}'s Top Tracks`)
+      .setTitle(`${name}'s Recent Tracks`)
       .addFields({
         name: "Recent tracks",
         value: top15,
         inline: true,
-      });
+      }).setThumbnail(firstTrackCover);
 
     await interaction.update({
       content: "",
