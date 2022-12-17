@@ -16,9 +16,10 @@ module.exports = {
         .setDescription("User to fetch profile from")
         .setRequired(true)
     ),
-
+  
   async execute(interaction, client) {
-    let x = interaction.options.getString("user");
+    
+    const x = interaction.options.getString("user");
     const res = await fetch(
       `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${x}&api_key=12e12b0d510784ca126139b82dcee704&format=json`
     );
@@ -76,11 +77,15 @@ module.exports = {
       .setCustomId("last-fm")
       .setLabel("change")
       .setStyle(ButtonStyle.Secondary);
+
+    const actions = new ActionRowBuilder()
+      .addComponents(button);
     
+   
 
     await interaction.reply({
-        embeds: [embed],
-        components: [new ActionRowBuilder().addComponents(button)]
+      embeds: [embed],
+      components: [actions],
     });
   },
 };
