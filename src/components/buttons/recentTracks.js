@@ -1,17 +1,26 @@
 const { EmbedBuilder } = require(`discord.js`)
+const User = require("../../schemas/user");
+const mongoose = require("mongoose");
 
 module.exports = {
   data: {
     name: `recent`,
   },
   async execute(interaction, client, options) {
-
+    x = options.getString('user');
+    console.log(x)
+    if (!y) {
+      let userName = await User.findOne({ userId: interaction.user.id });
+      y = userName.userName
+      console.log(y)
+      
+    }
     const tracks = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${options.getString('user')}&api_key=12e12b0d510784ca126139b82dcee704&format=json`
+      `https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${y}&api_key=12e12b0d510784ca126139b82dcee704&format=json`
     );
     console.log(options)
     const user = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getInfo&user=${options.getString('user')}&api_key=12e12b0d510784ca126139b82dcee704&format=json`
+      `https://ws.audioscrobbler.com/2.0/?method=user.getInfo&user=${y}&api_key=12e12b0d510784ca126139b82dcee704&format=json`
     );
     let x = await user.json();
     let name = x.user.name

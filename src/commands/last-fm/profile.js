@@ -5,6 +5,8 @@ const {
   ButtonBuilder,
   ButtonStyle,
 } = require("discord.js");
+const User = require("../../schemas/user");
+const mongoose = require("mongoose");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,12 +16,23 @@ module.exports = {
       option
         .setName("user")
         .setDescription("User to fetch profile from")
-        .setRequired(true)
+        .setRequired(false)
     ),
   
   async execute(interaction, client) {
     
-    const x = interaction.options.getString("user");
+    let x = interaction.options.getString("user");
+    
+    if (!x) {
+      let userName = await User.findOne({ userId: interaction.user.id });
+      if (!userName) {
+        return await interaction.reply({
+          content: 'You do not have a default username set.'
+        })
+      } else {
+        x = userName.userName
+      }
+    }
     const res = await fetch(
       `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${x}&api_key=12e12b0d510784ca126139b82dcee704&format=json`
     );
